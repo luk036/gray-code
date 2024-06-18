@@ -128,7 +128,7 @@ class Tree:
         pass
 
     def root_canonically(self):
-        c1, c2 = self.compute_center(None, None)
+        c1, c2 = self.compute_center()
         if c2 is not None:  # centers are different
             num_bits = 2 * (self.num_vertices - 1)
             x1 = [0] * num_bits
@@ -177,6 +177,37 @@ class Tree:
     def min_string_rotation(self, x, length):
         # Placeholder for finding minimum string rotation logic
         pass
+
+    def compute_center(self):
+        degs = [0] * self.num_vertices
+        leaves = deque()
+
+        for i in range(self.num_vertices):
+            degs[i] = self.deg(i)
+            if degs[i] == 1:
+                leaves.append(i)
+
+        num_vertices_remaining = self.num_vertices
+
+        while num_vertices_remaining > 2:
+            for _ in range(len(leaves)):
+                u = leaves.popleft()
+                for child in self.children[u]:
+                    degs[child] -= 1
+                    if degs[child] == 1:
+                        leaves.append(child)
+                if u != self.root:
+                    parent = self.parent[u]
+                    degs[parent] -= 1
+                    if degs[parent] == 1:
+                        leaves.append(parent)
+            num_vertices_remaining -= len(leaves)
+
+        assert 1 <= len(leaves) <= 2
+
+        c1 = leaves.popleft()
+        c2 = leaves.popleft() if leaves else None
+        return c1, c2
 
 
 # pytest test function example
