@@ -1,6 +1,3 @@
-# Test cases would go here, using a testing framework like pytest
-# Here's an example of how you might structure your tests with pytest
-
 from rect.vertex import Vertex, VertexType
 
 
