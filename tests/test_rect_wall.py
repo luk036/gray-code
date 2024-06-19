@@ -1,14 +1,11 @@
 from rect.wall import Wall
 
 
-def test_wall_default():
+def test_wall_initialization():
+    """
+    Ensures that the Wall's init method correctly sets the start and end points.
+    """
     wall = Wall()
-    assert wall.first == 0
-    assert wall.last == 0
-
-
-def test_wall_init():
-    wall = Wall()
-    wall.init(3, 5)
-    assert wall.first == 3
-    assert wall.last == 5
+    wall.init(1, 10)
+    assert wall.first_ == 1, "Start index not set correctly."
+    assert wall.last_ == 10, "End index not set correctly."

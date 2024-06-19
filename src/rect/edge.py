@@ -1,35 +1,34 @@
 from dataclasses import dataclass
 from enum import Enum
+import doctest
 
 
 class EdgeDir(Enum):
-    HOR = "Hor"
-    VER = "Ver"
+    """Enum representing the direction of an edge."""
+
+    HOR = "Horizontal"
+    VER = "Vertical"
     NONE = "None"
 
 
 @dataclass
 class Edge:
-    dir: EdgeDir = EdgeDir.NONE
-    tail: int = 0
-    head: int = 0
-    prev: int = 0
-    next: int = 0
-    left: int = 0
-    right: int = 0
-    wall: int = 0
+    """
+    Represents an Edge with various properties.
 
-    def init(
-        self,
-        dir: EdgeDir,
-        tail: int,
-        head: int,
-        prev: int,
-        next: int,
-        left: int,
-        right: int,
-        wall: int,
-    ):
+    >>> edge = Edge()
+    >>> edge.init(EdgeDir.HOR, 1, 2, 3, 4, 5, 6, 7)
+    >>> edge.dir == EdgeDir.HOR
+    True
+    >>> edge.tail == 1
+    True
+    """
+
+    def __init__(self):
+        self.init(EdgeDir.NONE, 0, 0, 0, 0, 0, 0, 0)
+
+    def init(self, dir, tail, head, prev, next, left, right, wall):
+        """Initializes the Edge with provided parameters."""
         self.dir = dir
         self.tail = tail
         self.head = head
@@ -38,3 +37,7 @@ class Edge:
         self.left = left
         self.right = right
         self.wall = wall
+
+
+if __name__ == "__main__":
+    doctest.testmod()

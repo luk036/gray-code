@@ -1,6 +1,19 @@
 from collections import deque
 
 
+def bitstrings_less_than(x, y):
+    return any(a < b for a, b in zip(x, y))
+
+
+def bitstrings_equal(x, y):
+    return all(a == b for a, b in zip(x, y))
+
+
+# Now, let's write some pytest tests for these functions.
+
+
+# To run these tests, you would use the pytest command in your terminal:
+# pytest <name_of_your_script>.py
 class Tree:
     def __init__(self, xv):
         assert len(xv) % 2 == 1
@@ -143,7 +156,7 @@ class Tree:
             assert self.root == c2 and self.ith_child(self.root, 0) == c1
             self.to_bitstring(x2)
 
-            if bitstrings_less_than(x1, x2, num_bits):
+            if bitstrings_less_than(x1[:num_bits], x2[:num_bits]):
                 self.rotate()
                 self.rotate_children(self.num_children(self.root) - 1)
                 assert self.root == c1 and self.ith_child(self.root, 0) == c2
@@ -168,11 +181,6 @@ class Tree:
 
             k = self.min_string_rotation(x, num_bits)
             self.rotate_children(subtree_count[k])
-
-    # Additional utility functions need to be defined here
-    def bitstrings_less_than(x1, x2, num_bits):
-        # Placeholder for comparison logic of bitstrings
-        pass
 
     def min_string_rotation(self, x, length):
         # Placeholder for finding minimum string rotation logic
@@ -214,11 +222,3 @@ class Tree:
 def test_tree_operations():
     # Initialize a test Tree instance with dummy values and test root_canonically method
     pass  # Implement test cases here
-
-
-# Note: The full implementation requires defining or adapting functions like
-# bitstrings_equal, bitstrings_less_than, and potentially handling differences
-# in how Rust and Python handle integer division, array manipulations, and
-# assertions.
-
-# pytest tests would go here, assuming the above methods are fully implemented.from collections import deque
