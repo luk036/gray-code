@@ -1,6 +1,3 @@
-from dataclasses import dataclass
-
-
 class Rectangle:
     """
     Represents a rectangle with four boundaries defined by their coordinates.

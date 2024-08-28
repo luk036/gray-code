@@ -1,9 +1,6 @@
 from enum import Enum
 
 
-from enum import Enum
-
-
 class VertexType(Enum):
     """Enum to represent the type of a vertex."""
 

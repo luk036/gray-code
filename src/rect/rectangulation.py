@@ -1,6 +1,6 @@
 from enum import Enum
 from typing import List
-from .vertex import Vertex, VertexType
+from .vertex import VertexType
 
 
 class RectangulationType(Enum):
