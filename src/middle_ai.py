@@ -472,7 +472,7 @@ class Tree:
 
         r = self.root
         u = self.ith_child(self.root, 0)
-        num_bits = 2 * (self.num_vertices - 1)
+        # num_bits = 2 * (self.num_vertices - 1)
 
         v = self.ith_child(self.root, 0)
         if self.num_children(v) == 1 and self.num_children(self.ith_child(v, 0)) == 0:
@@ -522,8 +522,8 @@ class Tree:
             return False
         u = self.ith_child(self.root, 0)
         k = self.num_children(u)
-        l = self.num_children(self.root) - 1
-        return k + l + 1 >= self.num_vertices - 1 and k > l
+        ll = self.num_children(self.root) - 1
+        return k + ll + 1 >= self.num_vertices - 1 and k > ll
 
     def is_thin_leaf(self, u: int) -> bool:
         if self.deg(u) > 1:
@@ -812,7 +812,7 @@ def main():
     visit_f = visit_f_log if store_vertices else visit_f_empty
     flip_seq_.clear()
 
-    hc = HamCycle(x, limit, visit_f)
+    _hc = HamCycle(x, limit, visit_f)
 
     if store_vertices:
         if limit != 0:
