@@ -219,6 +219,6 @@ class Tree:
 
 
 # pytest test function example
-def test_tree_operations():
+def test_tree_operations() -> None:
     # Initialize a test Tree instance with dummy values and test root_canonically method
     pass  # Implement test cases here

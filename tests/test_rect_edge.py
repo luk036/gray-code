@@ -1,7 +1,7 @@
 from rect.edge import Edge, EdgeDir
 
 
-def test_edge_init():
+def test_edge_init() -> None:
     """Test the initialization of Edge."""
     edge = Edge()
     edge.init(EdgeDir.HOR, 1, 2, 3, 4, 5, 6, 7)

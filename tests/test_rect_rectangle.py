@@ -1,7 +1,7 @@
 from rect.rectangle import Rectangle
 
 
-def test_rectangle_init():
+def test_rectangle_init() -> None:
     """Test the initialization of Rectangle."""
     rect = Rectangle()
     rect.init(10, 20, 30, 40)

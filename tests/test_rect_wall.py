@@ -1,7 +1,7 @@
 from rect.wall import Wall
 
 
-def test_wall_initialization():
+def test_wall_initialization() -> None:
     """
     Ensures that the Wall's init method correctly sets the start and end points.
     """

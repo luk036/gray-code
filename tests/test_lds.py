@@ -3,19 +3,19 @@ from pytest import approx
 from gray_code.lds import Circle, Halton, HaltonN, Sphere, Sphere3Hopf, VdCorput, vdc
 
 
-def test_vdc():
+def test_vdc() -> None:
     """assert that the vdcorput generator produces the correct values""" ""
     assert vdc(11, 2) == 0.8125
 
 
-def test_vdcorput():
+def test_vdcorput() -> None:
     """assert that the vdcorput generator produces the correct values"""
     vgen = VdCorput(2)
     vgen.reseed(0)
     assert vgen.pop() == 0.5
 
 
-def test_halton():
+def test_halton() -> None:
     """assert that the halton generator produces the correct values"""
     hgen = Halton([2, 3])
     hgen.reseed(0)
@@ -23,7 +23,7 @@ def test_halton():
     assert res[0] == 0.5
 
 
-def test_circle():
+def test_circle() -> None:
     """assert that the circle generator produces the correct values"""
     cgen = Circle(2)
     cgen.reseed(0)
@@ -33,7 +33,7 @@ def test_circle():
     assert res[0] == 1.0
 
 
-def test_sphere():
+def test_sphere() -> None:
     """assert that the sphere generator produces the correct values"""
     sgen = Sphere([2, 3])
     sgen.reseed(0)
@@ -45,7 +45,7 @@ def test_sphere():
     assert res[2] == approx(-0.5)
 
 
-def test_sphere3hopf():
+def test_sphere3hopf() -> None:
     """assert that the sphere3hopf generator produces the correct values"""
     sgen = Sphere3Hopf([2, 3, 5])
     sgen.reseed(0)
@@ -56,7 +56,7 @@ def test_sphere3hopf():
     assert res[3] == approx(-0.7745966692414837)
 
 
-def test_halton_n():
+def test_halton_n() -> None:
     """assert that the halton_n generator produces the correct values"""
     hgen = HaltonN([2, 3, 5])
     hgen.reseed(0)
