@@ -690,7 +690,8 @@ class HamCycle:
 
 
 def help():
-    print("""./middle [options]  compute middle levels Gray code from [Muetze,Nummenpalo]
+    print(
+        """./middle [options]  compute middle levels Gray code from [Muetze,Nummenpalo]
 -h                  display this help
 -n{1,2,...}         list bitstrings of length 2n+1 with weight n or n+1
 -l{-1,0,1,2,...}    number of bitstrings to list; -1 for full cycle
@@ -701,7 +702,8 @@ examples:  ./middle -n2
            ./middle -n2 -v01010
            ./middle -n2 -p1
            ./middle -n10 -l50
-           ./middle -n12 -s0""")
+           ./middle -n12 -s0"""
+    )
 
 
 def opt_n_missing():
