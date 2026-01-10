@@ -1,4 +1,4 @@
-from middle.tree import bitstrings_less_than, bitstrings_equal
+from middle.tree import bitstrings_equal, bitstrings_less_than
 
 
 def test_bitstrings_less_than() -> None:

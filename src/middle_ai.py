@@ -1,6 +1,6 @@
-import sys
 import getopt
-from typing import List, Tuple, Callable, Optional
+import sys
+from typing import Callable, List, Optional, Tuple
 
 
 class Vertex:

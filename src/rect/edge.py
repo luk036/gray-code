@@ -1,6 +1,6 @@
+import doctest
 from dataclasses import dataclass
 from enum import Enum
-import doctest
 
 
 class EdgeDir(Enum):
