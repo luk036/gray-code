@@ -18,7 +18,9 @@ class Vertex:
     def __len__(self) -> int:
         return len(self.bits)
 
-    def __eq__(self, other: "Vertex") -> bool:
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Vertex):
+            return NotImplemented
         return self.bits == other.bits
 
     def __str__(self) -> str:
@@ -28,6 +30,7 @@ class Vertex:
         if left is None and right is None:
             left = 0
             right = len(self.bits) - 2
+        assert left is not None and right is not None
         for i in range(left, right + 1):
             self.bits[i] = 1 - self.bits[i]
         self.bits[left : right + 1] = reversed(self.bits[left : right + 1])
@@ -51,10 +54,10 @@ class Vertex:
     def steps_height(
         self,
     ) -> Tuple[List[List[int]], List[List[int]], List[List[int]], List[List[int]]]:
-        usteps_neg = []
-        usteps_pos = []
-        dsteps_neg = []
-        dsteps_pos = []
+        usteps_neg: List[List[int]] = []
+        usteps_pos: List[List[int]] = []
+        dsteps_neg: List[List[int]] = []
+        dsteps_pos: List[List[int]] = []
         height = 0
         min_height = 0
         max_height = 0
@@ -303,7 +306,7 @@ class Tree:
 
         self.root = 0
         self.num_vertices = (len(xv) - 1) // 2 + 1
-        self.children = [[] for _ in range(self.num_vertices)]
+        self.children: List[List[int]] = [[] for _ in range(self.num_vertices)]
         self.parent = [0] * self.num_vertices
 
         u = self.root
@@ -508,7 +511,7 @@ class Tree:
         while self.ith_child(self.root, 0) != u:
             self.rotate_children()
 
-        return bitstrings_equal(this_bitstring, canon_bitstring)
+        return bitstrings_equal(this_bitstring, canon_bitstring, len(this_bitstring))
 
     def is_star(self) -> bool:
         return (
@@ -546,7 +549,7 @@ class Tree:
         return c
 
     def to_bitstring(self) -> List[int]:
-        x = []
+        x: List[int] = []
         self.to_bitstring_rec(x, self.root, 0)
         return x
 

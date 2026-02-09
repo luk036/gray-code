@@ -1,7 +1,10 @@
 from enum import Enum
 from typing import List
 
-from .vertex import VertexType
+from .edge import Edge
+from .rectangle import Rectangle
+from .vertex import Vertex, VertexType
+from .wall import Wall
 
 
 class RectangulationType(Enum):
@@ -66,10 +69,10 @@ class Rectangulation:
         self.patterns = patterns
         self.directions = [RectangulationDirection.NONE]
         self.sizes = [-1]
-        self.vertices = []
-        self.walls = []
-        self.edges = []
-        self.rectangles = []
+        self.vertices: List[Vertex] = []
+        self.walls: List[Wall] = []
+        self.edges: List[Edge] = []
+        self.rectangles: List[Rectangle] = []
         self.set_all_vertical()
 
     def set_all_vertical(self):

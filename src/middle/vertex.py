@@ -27,6 +27,15 @@ class Vertex:
         """Return the size of the bit vector representing the vertex."""
         return len(self.bits_)
 
+    @property
+    def bits(self):
+        """Property to access bits_ as bits for compatibility."""
+        return self.bits_
+
+    def flip_bit(self, i):
+        """Flip the bit at position i."""
+        self.bits_[i] = 1 - self.bits_[i]
+
     def rev_inv(self):
         """Reverse and invert the bitstring, ignoring the last bit."""
         self.bits_[:-1] = self.bits_[:-1][::-1]
@@ -80,6 +89,15 @@ class Vertex:
     def __repr__(self):
         """Represent the Vertex as a string."""
         return f"Vertex({self.bits_})"
+
+    def flip_last_and_skip_to_start(self):
+        """Flip the last bit and skip to the first vertex (placeholder)."""
+        self.bits_[-1] = 1 - self.bits_[-1]
+        return self.skip_to_first_vertex()
+
+    def skip_to_first_vertex(self):
+        """Skip to the first vertex (placeholder)."""
+        return 0
 
 
 # The bitstring comparison functions (bitstrings_less_than, bitstrings_equal)
