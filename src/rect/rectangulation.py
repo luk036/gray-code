@@ -61,8 +61,7 @@ class Rectangulation:
         >>> rect.typ
         <RectangulationType.GENERIC: 'Generic'>
         >>> rect.patterns
-        [<RectangulationPattern.WMILL_CLOCKWISE: 'WMillClockwise'>,
-         <RectangulationPattern.BRICK_LEFTRIGHT: 'BrickLeftRight'>]
+        [<RectangulationPattern.WMILL_CLOCKWISE: 'WMillClockwise'>, <RectangulationPattern.BRICK_LEFTRIGHT: 'BrickLeftRight'>]
         """
         self.n = n
         self.typ = typ
