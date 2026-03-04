@@ -242,9 +242,7 @@ class Rectangulation:
             dir_str = (
                 "Hor "
                 if e.dir_ == EdgeDir.Hor
-                else "Ver "
-                if e.dir_ == EdgeDir.Ver
-                else "None "
+                else "Ver " if e.dir_ == EdgeDir.Ver else "None "
             )
             print(
                 f"\t{i}. {dir_str}{e.tail_} {e.head_} {e.prev_} {e.next_} {e.left_} {e.right_} {e.wall_}"
@@ -264,9 +262,7 @@ class Rectangulation:
                         else (
                             "top"
                             if v.type_ == VertexType.top
-                            else "left"
-                            if v.type_ == VertexType.left
-                            else "right"
+                            else "left" if v.type_ == VertexType.left else "right"
                         )
                     )
                 )
