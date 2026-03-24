@@ -3,7 +3,29 @@ from .vertex import Vertex
 
 
 class HamCycle:
+    """Represents a Hamiltonian cycle computation on a binary tree.
+
+    This class computes a Hamiltonian cycle by traversing the tree structure
+    using flip sequences and rotations. It maintains the current path and
+    applies transformations based on the tau operation.
+
+    Attributes:
+        x: The original vertex.
+        y: The current vertex in the cycle.
+        limit: The maximum length of the Hamiltonian cycle (-1 for unlimited).
+        visit_f: A callback function called when visiting each vertex.
+        length: The current length of the cycle.
+    """
+
     def __init__(self, x: Vertex, limit: int, visit_f):
+        """Initialize the Hamiltonian cycle computation.
+
+        Args:
+            x: The starting vertex encoded as a bitstring.
+            limit: The maximum length of the Hamiltonian cycle (-1 for unlimited).
+            visit_f: A callback function called when visiting each vertex.
+                     The function takes (bits, index) as parameters.
+        """
         assert len(x.bits) % 2 == 1
         len(x.bits) // 2
 
@@ -25,15 +47,36 @@ class HamCycle:
         self.compute_ham_cycle()
 
     def compute_ham_cycle(self):
+        """Compute the Hamiltonian cycle.
+
+        This method implements the core logic for generating the Hamiltonian
+        cycle by applying flip sequences and rotations.
+        """
         # Implement the logic inside the while loop from C++ here
         # This involves translating flip_seq, rotate, compute_flip_seq_0/1, etc.
         # Due to complexity, the full logic is not implemented here.
         pass
 
     def get_length(self):
+        """Get the current length of the Hamiltonian cycle.
+
+        Returns:
+            The length of the computed cycle.
+        """
         return self.length
 
     def flip_seq(self, seq, dist_to_start, final_path):
+        """Apply a flip sequence to the current vertex.
+
+        Args:
+            seq: The sequence of indices to flip.
+            dist_to_start: Distance to the start of the path.
+            final_path: Whether this is the final path segment.
+
+        Returns:
+            True if the computation should terminate prematurely,
+            False otherwise.
+        """
         if (
             (dist_to_start > 0)
             or final_path

@@ -13,22 +13,33 @@ class VertexType(Enum):
 
 
 class Vertex:
-    """
-    Class for the Vertex.
+    """Represents a vertex in a rectangulation.
 
-    >>> vertex = Vertex()
-    >>> vertex.init(0, 1, 9, 8)
-    >>> vertex.type
-    <VertexType.BOTTOM: 'Bottom'>
+    A vertex has four boundary indices (north, east, south, west) that define
+    its position relative to walls in the rectangulation. The vertex type
+    is determined based on which boundaries are at the origin (0).
 
-    >>> vertex = Vertex()
-    >>> vertex.init(0, 1, 0, 8)
-    >>> vertex.type
-    <VertexType.CORNER: 'Corner'>
+    Attributes:
+        north: The index of the north wall (0 if on southern boundary).
+        east: The index of the east wall (0 if on western boundary).
+        south: The index of the south wall (0 if on northern boundary).
+        west: The index of the west wall (0 if on eastern boundary).
+        type: The type of the vertex (Corner, Top, Bottom, Left, Right, or None).
 
-    >>> vertex = Vertex()
-    >>> vertex.type
-    <VertexType.NONE: 'None'>
+    Examples:
+        >>> vertex = Vertex()
+        >>> vertex.init(0, 1, 9, 8)
+        >>> vertex.type
+        <VertexType.BOTTOM: 'Bottom'>
+
+        >>> vertex = Vertex()
+        >>> vertex.init(0, 1, 0, 8)
+        >>> vertex.type
+        <VertexType.CORNER: 'Corner'>
+
+        >>> vertex = Vertex()
+        >>> vertex.type
+        <VertexType.NONE: 'None'>
     """
 
     def __init__(self):
@@ -40,8 +51,13 @@ class Vertex:
         self.type = VertexType.NONE
 
     def init(self, north, east, south, west):
-        """
-        Method to initialize the vertex with given coordinates and determine its type.
+        """Initialize the vertex with given coordinates and determine its type.
+
+        Args:
+            north: The index of the north wall (0 if on southern boundary).
+            east: The index of the east wall (0 if on western boundary).
+            south: The index of the south wall (0 if on northern boundary).
+            west: The index of the west wall (0 if on eastern boundary).
         """
         self.north = north
         self.east = east

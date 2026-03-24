@@ -2,10 +2,28 @@ from collections import deque
 
 
 def bitstrings_less_than(x, y):
+    """Check if bitstring x is less than bitstring y lexicographically.
+
+    Args:
+        x: First bitstring (list of 0s and 1s).
+        y: Second bitstring (list of 0s and 1s).
+
+    Returns:
+        True if x < y, False otherwise.
+    """
     return any(a < b for a, b in zip(x, y))
 
 
 def bitstrings_equal(x, y):
+    """Check if two bitstrings are equal.
+
+    Args:
+        x: First bitstring (list of 0s and 1s).
+        y: Second bitstring (list of 0s and 1s).
+
+    Returns:
+        True if x == y, False otherwise.
+    """
     return all(a == b for a, b in zip(x, y))
 
 
@@ -15,6 +33,19 @@ def bitstrings_equal(x, y):
 # To run these tests, you would use the pytest command in your terminal:
 # pytest <name_of_your_script>.py
 class Tree:
+    """Represents a binary tree structure encoded as a bitstring.
+
+    The tree is encoded using a bitstring where 1 represents descending to
+    a child node and 0 represents ascending to the parent. The bitstring
+    has odd length (2*n - 1) for a tree with n vertices.
+
+    Attributes:
+        num_vertices: The number of vertices in the tree.
+        root: The index of the root vertex.
+        children: A list of deques containing child indices for each vertex.
+        parent: A list of parent indices for each vertex.
+    """
+
     def __init__(self, xv):
         assert len(xv) % 2 == 1
 
@@ -36,13 +67,38 @@ class Tree:
         assert n == self.num_vertices
 
     def deg(self, u):
+        """Get the degree of vertex u.
+
+        Args:
+            u: The index of the vertex.
+
+        Returns:
+            The degree (number of children plus parent, except for root).
+        """
         assert u < self.num_vertices
         return len(self.children[u]) + (u != self.root)
 
     def num_children(self, u):
+        """Get the number of children of vertex u.
+
+        Args:
+            u: The index of the vertex.
+
+        Returns:
+            The number of children of vertex u.
+        """
         return len(self.children[u])
 
     def ith_child(self, u, i):
+        """Get the i-th child of vertex u.
+
+        Args:
+            u: The index of the vertex.
+            i: The index of the child.
+
+        Returns:
+            The index of the i-th child.
+        """
         return self.children[u][i]
 
     # ... Other methods such as is_tau_preimage, is_tau_image, tau, tau_inverse,
@@ -53,6 +109,11 @@ class Tree:
     # functionalities like bitstring comparisons.
 
     def is_tau_preimage(self):
+        """Check if the tree is a valid tau preimage.
+
+        Returns:
+            True if the tree is a valid tau preimage, False otherwise.
+        """
         if self.num_vertices < 3:
             return False
         u = self.ith_child(self.root, 0)
@@ -64,6 +125,11 @@ class Tree:
         return True
 
     def is_tau_image(self):
+        """Check if the tree is a valid tau image.
+
+        Returns:
+            True if the tree is a valid tau image, False otherwise.
+        """
         if (
             self.num_vertices < 3
             or self.num_children(self.root) < 2
@@ -73,18 +139,33 @@ class Tree:
         return True
 
     def tau(self):
+        """Apply the tau transformation to the tree.
+
+        This moves the leftmost leaf to become a sibling of the root.
+        """
         assert self.is_tau_preimage()
         u = self.ith_child(self.root, 0)
         v = self.ith_child(u, 0)
         self.move_leaf(v, self.root, 0)
 
     def tau_inverse(self):
+        """Apply the inverse tau transformation to the tree.
+
+        This moves the leftmost child of the root to become a leaf.
+        """
         assert self.is_tau_image()
         v = self.ith_child(self.root, 0)
         u = self.ith_child(self.root, 1)
         self.move_leaf(v, u, 0)
 
     def move_leaf(self, leaf, new_parent, pos):
+        """Move a leaf to a new parent at a specified position.
+
+        Args:
+            leaf: The index of the leaf vertex.
+            new_parent: The index of the new parent.
+            pos: The position at which to insert the leaf.
+        """
         assert 0 <= leaf < self.num_vertices
         assert 0 <= new_parent < self.num_vertices
         assert 0 <= pos <= len(self.children[new_parent])
@@ -96,6 +177,7 @@ class Tree:
         self.parent[leaf] = new_parent
 
     def rotate(self):
+        """Rotate the tree by moving the root to its first child."""
         assert self.num_vertices >= 2
         u = self.ith_child(self.root, 0)
         self.parent[self.root] = u
@@ -106,13 +188,24 @@ class Tree:
         self.root = u
 
     def rotate_to_vertex(self, u):
+        """Rotate the tree until the specified vertex becomes the root.
+
+        Args:
+            u: The target vertex index to become the new root.
+        """
         while self.root != u:
             self.rotate()
 
     def rotate_children_default(self):
+        """Rotate children of the root by one position."""
         self.rotate_children(1)
 
     def rotate_children(self, k):
+        """Rotate the children of the root by k positions.
+
+        Args:
+            k: The number of positions to rotate.
+        """
         queue = deque(self.children[self.root])
         for _ in range(k):
             if queue:
@@ -121,6 +214,11 @@ class Tree:
         self.children[self.root] = queue
 
     def flip_tree(self):
+        """Apply the flip_tree transformation.
+
+        Returns:
+            True if the transformation was applied, False otherwise.
+        """
         if self.is_tau_preimage() and self.is_flip_tree_tau():
             self.tau()
             return True
@@ -141,6 +239,7 @@ class Tree:
         pass
 
     def root_canonically(self):
+        """Root the tree canonically based on its center."""
         c1, c2 = self.compute_center()
         if c2 is not None:  # centers are different
             num_bits = 2 * (self.num_vertices - 1)
@@ -187,6 +286,12 @@ class Tree:
         pass
 
     def compute_center(self):
+        """Compute the center(s) of the tree.
+
+        Returns:
+            A tuple (c1, c2) where c1 is the primary center and c2 is
+            the secondary center (None if there's only one center).
+        """
         degs = [0] * self.num_vertices
         leaves = deque()
 
