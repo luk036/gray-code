@@ -1,30 +1,45 @@
-<!-- These are examples of badges you might want to add to your README:
-     please update the URLs accordingly
-
-[![Built Status](https://api.cirrus-ci.com/github/<USER>/gray-code.svg?branch=main)](https://cirrus-ci.com/github/<USER>/gray-code)
-[![ReadTheDocs](https://readthedocs.org/projects/gray-code/badge/?version=latest)](https://gray-code.readthedocs.io/en/stable/)
-[![Coveralls](https://img.shields.io/coveralls/github/<USER>/gray-code/main.svg)](https://coveralls.io/r/<USER>/gray-code)
-[![PyPI-Server](https://img.shields.io/pypi/v/gray-code.svg)](https://pypi.org/project/gray-code/)
-[![Conda-Forge](https://img.shields.io/conda/vn/conda-forge/gray-code.svg)](https://anaconda.org/conda-forge/gray-code)
-[![Monthly Downloads](https://pepy.tech/badge/gray-code/month)](https://pepy.tech/project/gray-code)
-[![Twitter](https://img.shields.io/twitter/url/http/shields.io.svg?style=social&label=Twitter)](https://twitter.com/gray-code)
--->
-
 [![Project generated with PyScaffold](https://img.shields.io/badge/-PyScaffold-005CA0?logo=pyscaffold)](https://pyscaffold.org/)
 [![Documentation Status](https://readthedocs.org/projects/gray-code/badge/?version=latest)](https://gray-code.readthedocs.io/en/latest/?badge=latest)
 [![Coveralls](https://img.shields.io/coveralls/github/luk036/gray-code/main.svg)](https://coveralls.io/r/luk036/gray-code)
+[![PyPI-Server](https://img.shields.io/pypi/v/gray-code.svg)](https://pypi.org/project/gray-code/)
 
 # gray-code
 
 > Gray code Generation
 
-A longer description of your project goes here...
+A Python library for generating Gray codes, useful for:
+- **Error correction** - Only one bit changes between consecutive values
+- **Digital communications** - Reduced switching noise
+- **Karnaugh maps** - Simplifying boolean algebra
 
-## 👀 See also
+## Installation
 
-- [gray-code-cpp](https://github.com/luk036/gray-code-cpp)
+```bash
+pip install gray-code
+```
 
-<!-- pyscaffold-notes -->
+## Quick Start
+
+```python
+from gray_code import fib
+
+# Example: Calculate Fibonacci numbers
+result = fib(10)  # Returns 55
+```
+
+## API Overview
+
+### Core Functions
+
+- `fib(n)` - Calculate the n-th Fibonacci number (example)
+
+## See Also
+
+- [gray-code-cpp](https://github.com/luk036/gray-code-cpp) - C++ implementation
+
+## License
+
+This project is licensed under the MIT license - see the LICENSE file for details.
 
 ## 👉 Note
 

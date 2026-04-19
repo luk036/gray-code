@@ -20,6 +20,8 @@ References:
     - https://pip.pypa.io/en/stable/reference/pip_install
 """
 
+from __future__ import annotations
+
 import argparse
 import logging
 import sys

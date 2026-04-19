@@ -3,6 +3,50 @@
 requires = ["setuptools>=46.1.0", "setuptools_scm[toml]>=5"]
 build-backend = "setuptools.build_meta"
 
+[project]
+name = "gray-code"
+version = "0.0.1"  # Managed by setuptools-scm
+description = "Gray code Generation"
+readme = "README.md"
+requires-python = ">=3.8"
+license = {text = "MIT"}
+authors = [
+    {name = "Wai-Shing Luk", email = "luk036@gmail.com"}
+]
+keywords = ["gray-code", "binary-code"]
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.8",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Mathematics",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "importlib-metadata; python_version < '3.8'",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest",
+    "pytest-cov",
+    "setuptools",
+]
+docs = [
+    "sphinx",
+]
+
+[project.urls]
+Homepage = "https://luk036.github.io/gray-code/"
+Documentation = "https://gray-code.readthedocs.io/en/stable/"
+Repository = "https://github.com/luk036/gray-code"
+Issues = "https://github.com/luk036/gray-code/issues"
+
 [tool.setuptools_scm]
 # For smarter version schemes and other configuration options,
 # check out https://github.com/pypa/setuptools_scm
