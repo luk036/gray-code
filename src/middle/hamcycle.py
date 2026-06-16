@@ -19,7 +19,9 @@ class HamCycle:
         length: The current length of the cycle.
     """
 
-    def __init__(self, x: Vertex, limit: int, visit_f: Callable[[List[int], int], None]) -> None:
+    def __init__(
+        self, x: Vertex, limit: int, visit_f: Callable[[List[int], int], None]
+    ) -> None:
         """Initialize the Hamiltonian cycle computation.
 
         Args:

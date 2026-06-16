@@ -106,7 +106,13 @@ class Rectangulation:
             self.directions.append(RectangulationDirection.LEFT)
             self.sizes.append(j)
 
-    def init(self, vertices: List[Vertex], walls: List[Wall], edges: List[Edge], rectangles: List[Rectangle]) -> None:
+    def init(
+        self,
+        vertices: List[Vertex],
+        walls: List[Wall],
+        edges: List[Edge],
+        rectangles: List[Rectangle],
+    ) -> None:
         """Initialize the rectangulation with provided components.
 
         Args:

@@ -42,7 +42,17 @@ class Edge:
     def __init__(self) -> None:
         self.init(EdgeDir.NONE, 0, 0, 0, 0, 0, 0, 0)
 
-    def init(self, dir: EdgeDir, tail: int, head: int, prev: int, next: int, left: int, right: int, wall: int) -> None:
+    def init(
+        self,
+        dir: EdgeDir,
+        tail: int,
+        head: int,
+        prev: int,
+        next: int,
+        left: int,
+        right: int,
+        wall: int,
+    ) -> None:
         """Initialize the Edge with provided parameters.
 
         Args:
