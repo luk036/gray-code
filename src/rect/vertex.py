@@ -42,7 +42,7 @@ class Vertex:
         <VertexType.NONE: 'None'>
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """Constructor for Vertex with default type None."""
         self.north = 0
         self.east = 0
@@ -50,7 +50,7 @@ class Vertex:
         self.west = 0
         self.type = VertexType.NONE
 
-    def init(self, north, east, south, west):
+    def init(self, north: int, east: int, south: int, west: int) -> None:
         """Initialize the vertex with given coordinates and determine its type.
 
         Args:

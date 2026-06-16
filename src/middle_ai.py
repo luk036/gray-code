@@ -12,7 +12,7 @@ class Vertex:
     def __getitem__(self, i: int) -> int:
         return self.bits[i]
 
-    def __setitem__(self, i: int, value: int):
+    def __setitem__(self, i: int, value: int) -> None:
         self.bits[i] = value
 
     def __len__(self) -> int:
@@ -26,7 +26,7 @@ class Vertex:
     def __str__(self) -> str:
         return "".join(map(str, self.bits))
 
-    def rev_inv(self, left: Optional[int] = None, right: Optional[int] = None):
+    def rev_inv(self, left: Optional[int] = None, right: Optional[int] = None) -> None:
         if left is None and right is None:
             left = 0
             right = len(self.bits) - 2
@@ -223,7 +223,7 @@ class Vertex:
 
     def compute_flip_seq_0_rec(
         self, seq: List[int], idx: int, left: int, right: int, next_step: List[int]
-    ):
+    ) -> None:
         length = right - left + 1
         if length <= 0:
             return
@@ -261,7 +261,7 @@ class Vertex:
 
     def compute_flip_seq_1_rec(
         self, seq: List[int], idx: int, left: int, right: int, next_step: List[int]
-    ):
+    ) -> None:
         length = right - left + 1
         if length <= 0:
             return
@@ -280,7 +280,7 @@ class Vertex:
         idx += 1
         self.compute_flip_seq_1_rec(seq, idx, m + 1, right, next_step)
 
-    def aux_pointers(self, a: int, b: int, next_step: List[int]):
+    def aux_pointers(self, a: int, b: int, next_step: List[int]) -> None:
         assert a == b + 1 or (self.bits[a] == 1 and self.bits[b] == 0)
         left_ustep_height = [0] * (b - a + 1)
         height = 0
@@ -300,7 +300,7 @@ class Vertex:
 
 
 class Tree:
-    def __init__(self, x: Vertex):
+    def __init__(self, x: Vertex) -> None:
         xv = x.bits.copy()
         assert len(xv) % 2 == 1
 
@@ -354,19 +354,19 @@ class Tree:
             and self.num_children(self.ith_child(self.root, 0)) == 0
         )
 
-    def tau(self):
+    def tau(self) -> None:
         assert self.is_tau_preimage()
         u = self.ith_child(self.root, 0)
         v = self.ith_child(u, 0)
         self.move_leaf(v, self.root, 0)
 
-    def tau_inverse(self):
+    def tau_inverse(self) -> None:
         assert self.is_tau_image()
         v = self.ith_child(self.root, 0)
         u = self.ith_child(self.root, 1)
         self.move_leaf(v, u, 0)
 
-    def move_leaf(self, leaf: int, new_parent: int, pos: int):
+    def move_leaf(self, leaf: int, new_parent: int, pos: int) -> None:
         assert 0 <= leaf < self.num_vertices
         assert 0 <= new_parent < self.num_vertices
         assert 0 <= pos <= len(self.children[new_parent])
@@ -377,7 +377,7 @@ class Tree:
         self.children[new_parent].insert(pos, leaf)
         self.parent[leaf] = new_parent
 
-    def rotate(self):
+    def rotate(self) -> None:
         assert self.num_vertices >= 2
         u = self.ith_child(self.root, 0)
         self.parent[self.root] = u
@@ -386,11 +386,11 @@ class Tree:
         self.children[u][-1] = self.root
         self.root = u
 
-    def rotate_to_vertex(self, u: int):
+    def rotate_to_vertex(self, u: int) -> None:
         while self.root != u:
             self.rotate()
 
-    def rotate_children(self, k: int = 1):
+    def rotate_children(self, k: int = 1) -> None:
         self.children[self.root] = (
             self.children[self.root][k:] + self.children[self.root][:k]
         )
@@ -406,7 +406,7 @@ class Tree:
             self.tau()
         return False
 
-    def root_canonically(self):
+    def root_canonically(self) -> None:
         c1, c2 = self.compute_center()
         if c2 != -1:
             self.rotate_to_vertex(c1)
@@ -553,7 +553,7 @@ class Tree:
         self.to_bitstring_rec(x, self.root, 0)
         return x
 
-    def to_bitstring_rec(self, x: List[int], u: int, pos: int):
+    def to_bitstring_rec(self, x: List[int], u: int, pos: int) -> None:
         if self.num_children(u) == 0:
             return
         for child in self.children[u]:
@@ -692,7 +692,7 @@ class HamCycle:
         return False
 
 
-def help():
+def help() -> None:
     print(
         """./middle [options]  compute middle levels Gray code from [Muetze,Nummenpalo]
 -h                  display this help
@@ -709,29 +709,29 @@ examples:  ./middle -n2
     )
 
 
-def opt_n_missing():
+def opt_n_missing() -> None:
     print("option -n is mandatory and must come before -v", file=sys.stderr)
 
 
-def opt_v_error():
+def opt_v_error() -> None:
     print(
         "option -v must be followed by a bitstring of length 2n+1 with weight n or n+1",
         file=sys.stderr,
     )
 
 
-def visit_f_empty(y: List[int], i: int):
+def visit_f_empty(y: List[int], i: int) -> None:
     pass
 
 
 flip_seq_ = []
 
 
-def visit_f_log(y: List[int], i: int):
+def visit_f_log(y: List[int], i: int) -> None:
     flip_seq_.append(i)
 
 
-def main():
+def main() -> None:
     try:
         opts, args = getopt.getopt(sys.argv[1:], "hn:l:v:s:p:")
     except getopt.GetoptError as err:

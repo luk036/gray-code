@@ -1,7 +1,8 @@
 from collections import deque
+from typing import List, Optional, Tuple
 
 
-def bitstrings_less_than(x, y):
+def bitstrings_less_than(x: List[int], y: List[int]) -> bool:
     """Check if bitstring x is less than bitstring y lexicographically.
 
     Args:
@@ -14,7 +15,7 @@ def bitstrings_less_than(x, y):
     return any(a < b for a, b in zip(x, y))
 
 
-def bitstrings_equal(x, y):
+def bitstrings_equal(x: List[int], y: List[int]) -> bool:
     """Check if two bitstrings are equal.
 
     Args:
@@ -46,7 +47,7 @@ class Tree:
         parent: A list of parent indices for each vertex.
     """
 
-    def __init__(self, xv):
+    def __init__(self, xv: List[int]) -> None:
         assert len(xv) % 2 == 1
 
         self.num_vertices = (len(xv) - 1) // 2 + 1
@@ -66,7 +67,7 @@ class Tree:
                 u = self.parent[u]
         assert n == self.num_vertices
 
-    def deg(self, u):
+    def deg(self, u: int) -> int:
         """Get the degree of vertex u.
 
         Args:
@@ -78,7 +79,7 @@ class Tree:
         assert u < self.num_vertices
         return len(self.children[u]) + (u != self.root)
 
-    def num_children(self, u):
+    def num_children(self, u: int) -> int:
         """Get the number of children of vertex u.
 
         Args:
@@ -89,7 +90,7 @@ class Tree:
         """
         return len(self.children[u])
 
-    def ith_child(self, u, i):
+    def ith_child(self, u: int, i: int) -> int:
         """Get the i-th child of vertex u.
 
         Args:
@@ -108,7 +109,7 @@ class Tree:
     # and possibly utilizing external libraries or custom implementations for
     # functionalities like bitstring comparisons.
 
-    def is_tau_preimage(self):
+    def is_tau_preimage(self) -> bool:
         """Check if the tree is a valid tau preimage.
 
         Returns:
@@ -124,7 +125,7 @@ class Tree:
             return False
         return True
 
-    def is_tau_image(self):
+    def is_tau_image(self) -> bool:
         """Check if the tree is a valid tau image.
 
         Returns:
@@ -138,7 +139,7 @@ class Tree:
             return False
         return True
 
-    def tau(self):
+    def tau(self) -> None:
         """Apply the tau transformation to the tree.
 
         This moves the leftmost leaf to become a sibling of the root.
@@ -148,7 +149,7 @@ class Tree:
         v = self.ith_child(u, 0)
         self.move_leaf(v, self.root, 0)
 
-    def tau_inverse(self):
+    def tau_inverse(self) -> None:
         """Apply the inverse tau transformation to the tree.
 
         This moves the leftmost child of the root to become a leaf.
@@ -158,7 +159,7 @@ class Tree:
         u = self.ith_child(self.root, 1)
         self.move_leaf(v, u, 0)
 
-    def move_leaf(self, leaf, new_parent, pos):
+    def move_leaf(self, leaf: int, new_parent: int, pos: int) -> None:
         """Move a leaf to a new parent at a specified position.
 
         Args:
@@ -176,7 +177,7 @@ class Tree:
         self.children[new_parent].insert(pos, leaf)
         self.parent[leaf] = new_parent
 
-    def rotate(self):
+    def rotate(self) -> None:
         """Rotate the tree by moving the root to its first child."""
         assert self.num_vertices >= 2
         u = self.ith_child(self.root, 0)
@@ -187,7 +188,7 @@ class Tree:
         self.children[u].append(self.root)
         self.root = u
 
-    def rotate_to_vertex(self, u):
+    def rotate_to_vertex(self, u: int) -> None:
         """Rotate the tree until the specified vertex becomes the root.
 
         Args:
@@ -196,11 +197,11 @@ class Tree:
         while self.root != u:
             self.rotate()
 
-    def rotate_children_default(self):
+    def rotate_children_default(self) -> None:
         """Rotate children of the root by one position."""
         self.rotate_children(1)
 
-    def rotate_children(self, k):
+    def rotate_children(self, k: int) -> None:
         """Rotate the children of the root by k positions.
 
         Args:
@@ -213,7 +214,7 @@ class Tree:
                 queue.append(front)
         self.children[self.root] = queue
 
-    def flip_tree(self):
+    def flip_tree(self) -> bool:
         """Apply the flip_tree transformation.
 
         Returns:
@@ -234,11 +235,11 @@ class Tree:
     # since their implementations are not provided in the original Rust code.
 
     @staticmethod
-    def is_flip_tree_tau(tree):
+    def is_flip_tree_tau(tree: "Tree") -> bool:
         # Static method implementation depending on specific conditions
         pass
 
-    def root_canonically(self):
+    def root_canonically(self) -> None:
         """Root the tree canonically based on its center."""
         c1, c2 = self.compute_center()
         if c2 is not None:  # centers are different
@@ -281,11 +282,11 @@ class Tree:
             k = self.min_string_rotation(x, num_bits)
             self.rotate_children(subtree_count[k])
 
-    def min_string_rotation(self, x, length):
+    def min_string_rotation(self, x: List[int], length: int) -> None:
         # Placeholder for finding minimum string rotation logic
         pass
 
-    def compute_center(self):
+    def compute_center(self) -> Tuple[int, Optional[int]]:
         """Compute the center(s) of the tree.
 
         Returns:

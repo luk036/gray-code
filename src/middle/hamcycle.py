@@ -1,3 +1,5 @@
+from typing import Callable, List
+
 from .tree import Tree
 from .vertex import Vertex
 
@@ -17,7 +19,7 @@ class HamCycle:
         length: The current length of the cycle.
     """
 
-    def __init__(self, x: Vertex, limit: int, visit_f):
+    def __init__(self, x: Vertex, limit: int, visit_f: Callable[[List[int], int], None]) -> None:
         """Initialize the Hamiltonian cycle computation.
 
         Args:
@@ -46,7 +48,7 @@ class HamCycle:
 
         self.compute_ham_cycle()
 
-    def compute_ham_cycle(self):
+    def compute_ham_cycle(self) -> None:
         """Compute the Hamiltonian cycle.
 
         This method implements the core logic for generating the Hamiltonian
@@ -57,7 +59,7 @@ class HamCycle:
         # Due to complexity, the full logic is not implemented here.
         pass
 
-    def get_length(self):
+    def get_length(self) -> int:
         """Get the current length of the Hamiltonian cycle.
 
         Returns:
@@ -65,7 +67,7 @@ class HamCycle:
         """
         return self.length
 
-    def flip_seq(self, seq, dist_to_start, final_path):
+    def flip_seq(self, seq: List[int], dist_to_start: int, final_path: bool) -> bool:
         """Apply a flip sequence to the current vertex.
 
         Args:

@@ -9,7 +9,7 @@ class Rectangle:
         seast (int): The southeast coordinate.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Constructs a new `Rectangle` with default coordinate values (0).
         """
@@ -18,7 +18,7 @@ class Rectangle:
         self.swest = 0
         self.seast = 0
 
-    def init(self, neast, seast, swest, nwest):
+    def init(self, neast: int, seast: int, swest: int, nwest: int) -> None:
         """
         Initializes the rectangle with specified coordinates.
 

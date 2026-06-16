@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Vertex:
     """Represents a vertex in a binary tree encoded as a bitstring.
 
@@ -14,7 +17,7 @@ class Vertex:
         [1, 0, 1, 0, 1]
     """
 
-    def __init__(self, x):
+    def __init__(self, x: List[int]) -> None:
         """Initialize a Vertex instance with a bitstring.
 
         Args:
@@ -32,11 +35,11 @@ class Vertex:
         assert len(x) >= 3, "Bitstring length must be at least 3."
         self.bits_ = x
 
-    def get_bits(self):
+    def get_bits(self) -> List[int]:
         """Return the bitstring representation of the vertex."""
         return self.bits_
 
-    def __getitem__(self, i):
+    def __getitem__(self, i: int) -> int:
         """Allow accessing bits directly by index.
 
         Args:
@@ -47,7 +50,7 @@ class Vertex:
         """
         return self.bits_[i]
 
-    def __setitem__(self, i, value):
+    def __setitem__(self, i: int, value: int) -> None:
         """Allow setting bits directly by index.
 
         Args:
@@ -56,16 +59,16 @@ class Vertex:
         """
         self.bits_[i] = value
 
-    def size(self):
+    def size(self) -> int:
         """Return the size of the bit vector representing the vertex."""
         return len(self.bits_)
 
     @property
-    def bits(self):
+    def bits(self) -> List[int]:
         """Property to access bits_ as bits for compatibility."""
         return self.bits_
 
-    def flip_bit(self, i):
+    def flip_bit(self, i: int) -> None:
         """Flip the bit at position i.
 
         Args:
@@ -73,7 +76,7 @@ class Vertex:
         """
         self.bits_[i] = 1 - self.bits_[i]
 
-    def rev_inv(self):
+    def rev_inv(self) -> None:
         """Reverse and invert the bitstring, ignoring the last bit.
 
         This operation reverses the bitstring (excluding the last bit)
@@ -82,32 +85,32 @@ class Vertex:
         self.bits_[:-1] = self.bits_[:-1][::-1]
         self.bits_[:-1] = [1 - bit for bit in self.bits_[:-1]]
 
-    def is_first_vertex(self):
+    def is_first_vertex(self) -> None:
         """Check if the vertex is the first vertex on a path."""
         # Placeholder for actual logic
         pass
 
-    def is_last_vertex(self):
+    def is_last_vertex(self) -> None:
         """Check if the vertex is the last vertex on a path."""
         # Placeholder for actual logic
         pass
 
-    def to_first_vertex(self):
+    def to_first_vertex(self) -> None:
         """Move to the first vertex on a path."""
         # Placeholder for actual logic
         pass
 
-    def to_last_vertex(self):
+    def to_last_vertex(self) -> None:
         """Move to the last vertex on a path."""
         # Placeholder for actual logic
         pass
 
-    def compute_flip_seq_0(self, seq, flip):
+    def compute_flip_seq_0(self, seq: List[int], flip: bool) -> None:
         """Compute flip sequence 0."""
         # Placeholder for actual logic
         pass
 
-    def compute_flip_seq_1(self, seq):
+    def compute_flip_seq_1(self, seq: List[int]) -> None:
         """Compute flip sequence 1."""
         # Placeholder for actual logic
         pass
@@ -118,7 +121,7 @@ class Vertex:
     # Overloading equality and inequality operators are not directly possible in Python
     # as they are in C++, but you can define __eq__ and __ne__ methods.
 
-    def __eq__(self, other):
+    def __eq__(self, other: object) -> bool:
         """Check if two vertices are equal by comparing their bitstrings.
 
         Args:
@@ -129,7 +132,7 @@ class Vertex:
         """
         return self.bits_ == other.bits_
 
-    def __ne__(self, other):
+    def __ne__(self, other: object) -> bool:
         """Check if two vertices are not equal.
 
         Args:
@@ -141,16 +144,16 @@ class Vertex:
         return not self.__eq__(other)
 
     # For output representation, you can define the __str__ or __repr__ method.
-    def __repr__(self):
+    def __repr__(self) -> str:
         """Represent the Vertex as a string."""
         return f"Vertex({self.bits_})"
 
-    def flip_last_and_skip_to_start(self):
+    def flip_last_and_skip_to_start(self) -> int:
         """Flip the last bit and skip to the first vertex (placeholder)."""
         self.bits_[-1] = 1 - self.bits_[-1]
         return self.skip_to_first_vertex()
 
-    def skip_to_first_vertex(self):
+    def skip_to_first_vertex(self) -> int:
         """Skip to the first vertex (placeholder)."""
         return 0
 

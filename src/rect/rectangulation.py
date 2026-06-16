@@ -14,7 +14,7 @@ class RectangulationType(Enum):
     BALANCED = "Balanced"
     DIAGONAL = "Diagonal"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.value
 
 
@@ -25,7 +25,7 @@ class RectangulationDirection(Enum):
     RIGHT = "Right"
     NONE = "None"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.value
 
 
@@ -41,7 +41,7 @@ class RectangulationPattern(Enum):
     HVERTICAL = "HVertical"
     HHORIZONTAL = "HHorizontal"
 
-    def __str__(self):
+    def __str__(self) -> str:
         return self.value
 
 
@@ -96,7 +96,7 @@ class Rectangulation:
         self.rectangles: List[Rectangle] = []
         self.set_all_vertical()
 
-    def set_all_vertical(self):
+    def set_all_vertical(self) -> None:
         """Set all directions to vertical initially.
 
         This method initializes the directions list with LEFT for each
@@ -106,7 +106,7 @@ class Rectangulation:
             self.directions.append(RectangulationDirection.LEFT)
             self.sizes.append(j)
 
-    def init(self, vertices, walls, edges, rectangles):
+    def init(self, vertices: List[Vertex], walls: List[Wall], edges: List[Edge], rectangles: List[Rectangle]) -> None:
         """Initialize the rectangulation with provided components.
 
         Args:
@@ -120,7 +120,7 @@ class Rectangulation:
         self.edges = edges
         self.rectangles = rectangles
 
-    def print_data(self):
+    def print_data(self) -> None:
         """Print the data structures in a readable format."""
         print("Edges:")
         for i, e in enumerate(self.edges):
@@ -128,7 +128,7 @@ class Rectangulation:
 
         # Similar prints for vertices, walls, and rectangles would follow here
 
-    def print_coordinates_generic(self):
+    def print_coordinates_generic(self) -> None:
         """Print coordinates for generic rectangulation (placeholder).
 
         This is a placeholder method that demonstrates the logic for

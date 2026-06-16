@@ -7,7 +7,7 @@ class Wall:
         last_ (int): The ending index of the wall.
     """
 
-    def __init__(self):
+    def __init__(self) -> None:
         """
         Initializes a new instance of `Wall` with default values.
 
@@ -19,7 +19,7 @@ class Wall:
         self.first_ = 0
         self.last_ = 0
 
-    def init(self, first, last):
+    def init(self, first: int, last: int) -> None:
         """
         Initializes the wall with specified start and end points.
 
