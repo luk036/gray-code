@@ -689,12 +689,12 @@ class Rectangulation:
             assert alpha == self.edges_[beta].next_
             k = self.edges_[alpha].left_
             alpha_prime = self.edges_[beta].prev_
-            l = self.edges_[alpha_prime].right_
+            r = self.edges_[alpha_prime].right_
 
             self.remTail(beta)
             self.insBefore(beta, a, alpha)
             self.edges_[beta].left_ = k
-            self.edges_[beta].right_ = l
+            self.edges_[beta].right_ = r
 
     def Wjump_ver(self, j: int, dir_: RectangulationDirection, alpha: int):
         if dir_ == RectangulationDirection.right:
@@ -713,12 +713,12 @@ class Rectangulation:
             assert alpha == self.edges_[beta].prev_
             k = self.edges_[alpha].left_
             alpha_prime = self.edges_[beta].next_
-            l = self.edges_[alpha_prime].right_
+            r = self.edges_[alpha_prime].right_
 
             self.remHead(beta)
             self.insAfter(alpha, a, beta)
             self.edges_[beta].left_ = k
-            self.edges_[beta].right_ = l
+            self.edges_[beta].right_ = r
 
     def Sjump(self, j: int, d: RectangulationDirection, alpha: int):
         if d == RectangulationDirection.left:
@@ -732,7 +732,7 @@ class Rectangulation:
             delta = self.vertices_[a].south_
             c_prime = self.edges_[beta_prime].tail_
             k = self.edges_[alpha].left_
-            l = self.edges_[gamma].right_
+            r = self.edges_[gamma].right_
             x = self.edges_[delta].wall_
 
             self.remTail(beta)
@@ -770,7 +770,7 @@ class Rectangulation:
             self.edges_[beta].left_ = k
             self.edges_[beta].right_ = j
             self.edges_[beta_prime].left_ = j - 1
-            self.edges_[beta_prime].right_ = l
+            self.edges_[beta_prime].right_ = r
         else:
             a = self.rectangles_[j].nwest_
             b = self.rectangles_[j].neast_
@@ -782,7 +782,7 @@ class Rectangulation:
             delta = self.vertices_[a].east_
             c_prime = self.edges_[beta_prime].head_
             k = self.edges_[alpha].left_
-            l = self.edges_[gamma].right_
+            r = self.edges_[gamma].right_
             x = self.edges_[delta].wall_
 
             self.remHead(beta)
@@ -820,7 +820,7 @@ class Rectangulation:
             self.edges_[beta].left_ = k
             self.edges_[beta].right_ = j
             self.edges_[beta_prime].left_ = j - 1
-            self.edges_[beta_prime].right_ = l
+            self.edges_[beta_prime].right_ = r
 
     def Tjump_hor(self, j: int, dir_: RectangulationDirection, alpha: int):
         if dir_ == RectangulationDirection.left:
@@ -833,7 +833,7 @@ class Rectangulation:
             gamma = self.vertices_[c].south_
             gamma_prime = self.vertices_[b].south_
             k = self.edges_[beta_prime].left_
-            l = self.edges_[gamma].right_
+            r = self.edges_[gamma].right_
             m = self.edges_[alpha].right_
             x = self.edges_[alpha].wall_
             y = self.edges_[gamma_prime].wall_
@@ -860,7 +860,7 @@ class Rectangulation:
                 nu = self.edges_[nu].prev_
 
             self.edges_[beta].left_ = k
-            self.edges_[beta_prime].right_ = l
+            self.edges_[beta_prime].right_ = r
         else:
             a = self.rectangles_[j].nwest_
             b = self.rectangles_[j].neast_
@@ -870,7 +870,7 @@ class Rectangulation:
             beta_prime = self.vertices_[b].north_
             c = self.edges_[beta_prime].head_
             k = self.edges_[beta].left_
-            l = self.edges_[alpha].left_
+            r = self.edges_[alpha].left_
             m = self.edges_[alpha_prime].right_
             x = self.edges_[alpha_prime].wall_
             y = self.edges_[gamma_prime].wall_
@@ -896,7 +896,7 @@ class Rectangulation:
                 self.edges_[nu].right_ = j
                 nu = self.edges_[nu].prev_
 
-            self.edges_[beta].left_ = l
+            self.edges_[beta].left_ = r
             self.edges_[beta_prime].right_ = j
 
     def Tjump_ver(self, j: int, dir_: RectangulationDirection, alpha: int):
@@ -910,7 +910,7 @@ class Rectangulation:
             gamma = self.vertices_[c].east_
             gamma_prime = self.vertices_[b].east_
             k = self.edges_[beta_prime].left_
-            l = self.edges_[gamma].right_
+            r = self.edges_[gamma].right_
             m = self.edges_[alpha].right_
             x = self.edges_[alpha].wall_
             y = self.edges_[gamma_prime].wall_
@@ -939,7 +939,7 @@ class Rectangulation:
                 nu = self.edges_[nu].next_
 
             self.edges_[beta].left_ = k
-            self.edges_[beta_prime].right_ = l
+            self.edges_[beta_prime].right_ = r
         else:
             a = self.rectangles_[j].nwest_
             b = self.rectangles_[j].swest_
@@ -949,7 +949,7 @@ class Rectangulation:
             beta_prime = self.vertices_[b].west_
             c = self.edges_[beta_prime].tail_
             k = self.edges_[beta].left_
-            l = self.edges_[alpha].left_
+            r = self.edges_[alpha].left_
             m = self.edges_[alpha_prime].right_
             x = self.edges_[alpha_prime].wall_
             y = self.edges_[gamma_prime].wall_
@@ -977,7 +977,7 @@ class Rectangulation:
                 self.edges_[nu].right_ = j
                 nu = self.edges_[nu].next_
 
-            self.edges_[beta].left_ = l
+            self.edges_[beta].left_ = r
             self.edges_[beta_prime].right_ = j
 
     def next_generic(self, j: int, dir_: RectangulationDirection):

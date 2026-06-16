@@ -817,7 +817,7 @@ def main() -> None:
     visit_f = visit_f_log if store_vertices else visit_f_empty
     flip_seq_.clear()
 
-    _hc = HamCycle(x, limit, visit_f)
+    HamCycle(x, limit, visit_f)  # noqa: F841
 
     if store_vertices:
         if limit != 0:
