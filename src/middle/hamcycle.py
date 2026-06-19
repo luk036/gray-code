@@ -1,4 +1,4 @@
-from typing import Callable, List
+from typing import Callable, List, Optional
 
 from .tree import Tree
 from .vertex import Vertex
@@ -33,11 +33,13 @@ class HamCycle:
         assert len(x.bits) % 2 == 1
         len(x.bits) // 2
 
-        xs = x.flip_last_and_skip_to_start() if x.bits[-1] == 1 else x
-        skip = xs.skip_to_first_vertex()
+        if x.bits[-1] == 1:
+            x.flip_last_and_skip_to_start()
+        xs: Vertex = x
+        skip: int = xs.skip_to_first_vertex()
         assert xs.is_first_vertex()
 
-        y_tree = Tree(xs)
+        y_tree = Tree(xs.bits)
         if skip > 0 and y_tree.flip_tree():
             # Adjust skip and transform xs accordingly
             pass  # unimplemented
@@ -69,7 +71,9 @@ class HamCycle:
         """
         return self.length
 
-    def flip_seq(self, seq: List[int], dist_to_start: int, final_path: bool) -> bool:
+    def flip_seq(  # type: ignore[empty-body]
+        self, seq: List[int], dist_to_start: int, final_path: bool
+    ) -> bool:
         """Apply a flip sequence to the current vertex.
 
         Args:
@@ -94,10 +98,9 @@ class HamCycle:
                 i = seq[j]
                 if dist_to_start == 0 or final_path:
                     self.y.flip_bit(i)  # Assuming Vertex has a flip_bit method
-                    if self.visit_f:  # Only call if visit_f is not None
-                        self.visit_f(
-                            self.y.get_bits(), i
-                        )  # Assuming get_bits method exists
+                    self.visit_f(
+                        self.y.get_bits(), i
+                    )  # Assuming get_bits method exists
                     self.length += 1
                 else:
                     self.y.flip_bit(i)
@@ -107,7 +110,6 @@ class HamCycle:
             for j in range(len(seq)):
                 i = seq[j]
                 self.y.flip_bit(i)
-                if self.visit_f:
-                    self.visit_f(self.y.get_bits(), i)
+                self.visit_f(self.y.get_bits(), i)
             self.length += len(seq)
         return False  # continue Hamilton cycle computation

@@ -145,9 +145,9 @@ class Rectangulation:
 
         # Start with every vertex on the western side as an active vertex
         for a, v in enumerate(self.vertices):
-            if v.type_ in (VertexType.RIGHT, VertexType.CORNER):
+            if v.type in (VertexType.RIGHT, VertexType.CORNER):
                 side_edge_id = (
-                    v.north if v.type_ == VertexType.RIGHT else max(v.north, v.south)
+                    v.north if v.type == VertexType.RIGHT else max(v.north, v.south)
                 )
                 if self.edges[side_edge_id].left == 0:
                     active_vertices.append(a)
@@ -159,7 +159,7 @@ class Rectangulation:
                 vertex_x_coord[idx] = x_value
             x_value += 1
 
-            new_active_vertices = []
+            new_active_vertices: List[int] = []
             for idx in active_vertices:
                 # Propagation logic similar to C++ code would go here
                 # Due to Python's dynamic nature and lack of explicit types like in C++,

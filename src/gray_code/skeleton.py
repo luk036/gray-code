@@ -112,17 +112,17 @@ def setup_logging(loglevel: int) -> None:
     )
 
 
-def main(args: list[str]) -> None:
+def main(argv: list[str]) -> None:
     """Wrapper allowing :func:`fib` to be called with string arguments in a CLI fashion
 
     Instead of returning the value from :func:`fib`, it prints the result to the
     ``stdout`` in a nicely formatted message.
 
     Args:
-      args (List[str]): command line parameters as list of strings
+      argv (List[str]): command line parameters as list of strings
           (for example  ``["--verbose", "42"]``).
     """
-    args = parse_args(args)
+    args = parse_args(argv)
     setup_logging(args.loglevel)
     _logger.debug("Starting crazy calculations...")
     print(f"The {args.n}-th Fibonacci number is {fib(args.n)}")

@@ -780,6 +780,7 @@ def main() -> None:
                 opt_n_missing()
                 help()
                 sys.exit(1)
+            assert n is not None
             try:
                 xv = list(map(int, a))
                 if len(xv) != 2 * n + 1:
@@ -809,6 +810,8 @@ def main() -> None:
         opt_n_missing()
         help()
         sys.exit(1)
+
+    assert n is not None, "n should have been set by -n option"
 
     if not v_set:
         v = [1] * n + [0] * (n + 1)

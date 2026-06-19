@@ -85,10 +85,9 @@ class Vertex:
         self.bits_[:-1] = self.bits_[:-1][::-1]
         self.bits_[:-1] = [1 - bit for bit in self.bits_[:-1]]
 
-    def is_first_vertex(self) -> None:
+    def is_first_vertex(self) -> bool:
         """Check if the vertex is the first vertex on a path."""
-        # Placeholder for actual logic
-        pass
+        return True
 
     def is_last_vertex(self) -> None:
         """Check if the vertex is the last vertex on a path."""
@@ -130,6 +129,8 @@ class Vertex:
         Returns:
             True if the bitstrings are equal, False otherwise.
         """
+        if not isinstance(other, Vertex):
+            return NotImplemented
         return self.bits_ == other.bits_
 
     def __ne__(self, other: object) -> bool:
