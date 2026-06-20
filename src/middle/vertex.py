@@ -65,7 +65,7 @@ class Vertex:
 
     @property
     def bits(self) -> List[int]:
-        """Property to access bits_ as bits for compatibility."""
+        """Property to access the internal bitstring for compatibility."""
         return self.bits_
 
     def flip_bit(self, i: int) -> None:

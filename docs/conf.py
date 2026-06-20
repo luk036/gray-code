@@ -34,7 +34,11 @@ except ImportError:
     from sphinx import apidoc
 
 output_dir = os.path.join(__location__, "api")
-module_dir = os.path.join(__location__, "../src/gray_code")
+module_dirs = [
+    os.path.join(__location__, "../src/gray_code"),
+    os.path.join(__location__, "../src/middle"),
+    os.path.join(__location__, "../src/rect"),
+]
 try:
     shutil.rmtree(output_dir)
 except FileNotFoundError:
@@ -43,14 +47,52 @@ except FileNotFoundError:
 try:
     import sphinx
 
-    cmd_line = f"sphinx-apidoc --implicit-namespaces -f -o {output_dir} {module_dir}"
+    for md in module_dirs:
+        cmd_line = f"sphinx-apidoc --implicit-namespaces --no-toc -f -o {output_dir} {md}"
+        args = cmd_line.split(" ")
+        if tuple(sphinx.__version__.split(".")) >= ("1", "7"):
+            args = args[1:]
+        apidoc.main(args)
 
-    args = cmd_line.split(" ")
-    if tuple(sphinx.__version__.split(".")) >= ("1", "7"):
-        # This is a rudimentary parse_version to avoid external dependencies
-        args = args[1:]
+    # Remove the package-level automodule for each package to avoid duplicate
+    # docs from __init__ re-exports
+    for pkg in ("gray_code", "middle", "rect"):
+        pkg_rst = os.path.join(output_dir, f"{pkg}.rst")
+        if not os.path.exists(pkg_rst):
+            continue
+        with open(pkg_rst, "r", encoding="utf-8") as f:
+            content = f.read()
 
-    apidoc.main(args)
+        lines = content.split("\n")
+        new_lines = []
+        skip = 0
+        target = f".. automodule:: {pkg}"
+        for line in lines:
+            if skip > 0:
+                skip -= 1
+                continue
+            if line.strip() == target:
+                skip = 3
+                continue
+            new_lines.append(line)
+
+        cleaned = "\n".join(new_lines)
+        cleaned = cleaned.replace("Module contents\n---------------\n\n", "")
+        cleaned = cleaned.replace("Module contents\n---------------\n", "")
+
+        with open(pkg_rst, "w", encoding="utf-8") as f:
+            f.write(cleaned)
+
+    # Generate modules.rst with all packages (rmtree deletes it above)
+    modules_rst = os.path.join(output_dir, "modules.rst")
+    with open(modules_rst, "w", encoding="utf-8") as f:
+        f.write("gray_code\n")
+        f.write("=========\n\n")
+        f.write(".. toctree::\n")
+        f.write("   :maxdepth: 4\n\n")
+        f.write("   gray_code\n")
+        f.write("   middle\n")
+        f.write("   rect\n")
 except Exception as e:
     print("Running `sphinx-apidoc` failed!\n{}".format(e))
 
