@@ -20,12 +20,12 @@ for i, code in enumerate(codes):
     bits = [(code >> j) & 1 for j in range(n_bits - 1, -1, -1)]
     for j, b in enumerate(bits):
         if b:
-            plt.plot([i, i], [j, j + 0.8], 'b-', linewidth=2)
-            plt.plot(i, j + 0.4, 'bo', markersize=4)
+            plt.plot([i, i], [j, j + 0.8], "b-", linewidth=2)
+            plt.plot(i, j + 0.4, "bo", markersize=4)
 
-plt.xlabel('Sequence Index')
-plt.ylabel('Bit Position')
-plt.yticks(range(n_bits), [f'Bit {n_bits-1-i}' for i in range(n_bits)])
-plt.title(f'{n_bits}-bit Gray Code Sequence')
+plt.xlabel("Sequence Index")
+plt.ylabel("Bit Position")
+plt.yticks(range(n_bits), [f"Bit {n_bits-1-i}" for i in range(n_bits)])
+plt.title(f"{n_bits}-bit Gray Code Sequence")
 plt.xlim(-0.5, len(codes) - 0.5)
 plt.grid(True, alpha=0.3)

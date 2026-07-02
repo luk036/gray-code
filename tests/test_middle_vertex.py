@@ -1,6 +1,7 @@
 """Tests for the middle.vertex module."""
 
 import pytest
+
 from middle.vertex import Vertex
 
 
