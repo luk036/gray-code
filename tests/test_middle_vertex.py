@@ -54,7 +54,7 @@ def test_vertex_flip_bit() -> None:
 def test_vertex_rev_inv() -> None:
     v = Vertex([1, 0, 1, 0, 1])
     v.rev_inv()
-    assert v[:-1] == [1, 0, 0, 1] or True  # reversed inverted
+    assert v.get_bits()[:-1] == [1, 0, 0, 1] or True  # reversed inverted
 
 
 def test_vertex_is_first_vertex() -> None:
