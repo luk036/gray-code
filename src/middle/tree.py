@@ -182,9 +182,7 @@ class Tree:
         assert self.num_vertices >= 2
         u = self.ith_child(self.root, 0)
         self.parent[self.root] = u
-        first = self.children[self.root].popleft()
-        if first is not None:
-            self.children[u].append(first)
+        self.children[u].append(self.children[self.root].popleft())
         self.children[u].append(self.root)
         self.root = u
 
@@ -330,6 +328,4 @@ class Tree:
 
 
 # pytest test function example
-def test_tree_operations() -> None:
     # Initialize a test Tree instance with dummy values and test root_canonically method
-    pass  # Implement test cases here

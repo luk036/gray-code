@@ -475,7 +475,6 @@ class Tree:
 
         r = self.root
         u = self.ith_child(self.root, 0)
-        # num_bits = 2 * (self.num_vertices - 1)
 
         v = self.ith_child(self.root, 0)
         if self.num_children(v) == 1 and self.num_children(self.ith_child(v, 0)) == 0:

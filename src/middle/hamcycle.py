@@ -58,9 +58,6 @@ class HamCycle:
         This method implements the core logic for generating the Hamiltonian
         cycle by applying flip sequences and rotations.
         """
-        # Implement the logic inside the while loop from C++ here
-        # This involves translating flip_seq, rotate, compute_flip_seq_0/1, etc.
-        # Due to complexity, the full logic is not implemented here.
         pass
 
     def get_length(self) -> int:

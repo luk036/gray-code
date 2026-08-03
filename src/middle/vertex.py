@@ -36,7 +36,6 @@ class Vertex:
         self.bits_ = x
 
     def get_bits(self) -> List[int]:
-        """Return the bitstring representation of the vertex."""
         return self.bits_
 
     def __getitem__(self, i: int) -> int:
@@ -60,7 +59,6 @@ class Vertex:
         self.bits_[i] = value
 
     def size(self) -> int:
-        """Return the size of the bit vector representing the vertex."""
         return len(self.bits_)
 
     @property

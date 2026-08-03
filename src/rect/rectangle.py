@@ -10,9 +10,6 @@ class Rectangle:
     """
 
     def __init__(self) -> None:
-        """
-        Constructs a new `Rectangle` with default coordinate values (0).
-        """
         self.nwest = 0
         self.neast = 0
         self.swest = 0

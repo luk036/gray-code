@@ -43,7 +43,6 @@ class Vertex:
     """
 
     def __init__(self) -> None:
-        """Constructor for Vertex with default type None."""
         self.north = 0
         self.east = 0
         self.south = 0
