@@ -328,4 +328,4 @@ class Tree:
 
 
 # pytest test function example
-    # Initialize a test Tree instance with dummy values and test root_canonically method
+# Initialize a test Tree instance with dummy values and test root_canonically method
