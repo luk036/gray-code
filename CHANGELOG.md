@@ -1,5 +1,13 @@
 # Changelog
 
+## Version 0.3 (2026-11-20)
+
+### Build & CI
+- **PyPI publish workflow**: Added the release-triggered publish workflow. (#1446897)
+
+### Maintenance
+- **Package metadata**: Replaced the placeholder description and URLs in `setup.cfg`. (#1446897)
+
 ## Version 0.2 (2026-10-09)
 
 ### Bug Fixes
